@@ -1,0 +1,23 @@
+---
+title: '服务端渲染'
+description: '服务端渲染'
+category: 'xxx'
+---
+
+## 服务端渲染
+
+### csr （Client Side Rendering） 客户端渲染
+
+渲染流程：
+
+![](https://user-gold-cdn.xitu.io/2019/12/9/16eeb56642155f21?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+### ssr (Server Side Rendering) 服务端渲染
+
+是指将单页应用（SPA）在服务器端渲染成 HTML 片段，发送到浏览器，然后交由浏览器为其绑定状态与事件，成为完全可交互页面的过程。
+
+渲染流程
+
+![](https://user-gold-cdn.xitu.io/2019/12/9/16eeb5663f9bdfe7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+![](https://user-gold-cdn.xitu.io/2019/7/2/16bb2b6d8dc96733?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
