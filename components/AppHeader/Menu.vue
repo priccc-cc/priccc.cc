@@ -75,7 +75,6 @@ const route = useRoute()
 const router = useRouter()
 const type = route.params.contentType as string
 const category = route.params.category as string
-const title = route.params.title as string
 const defaultActive = ref('')
 const { data: navigation } = await useAsyncData('navigation', () =>
   fetchContentNavigation(),

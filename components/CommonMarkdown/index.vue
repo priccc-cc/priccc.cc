@@ -9,15 +9,17 @@
 
       <!-- 上下markdown -->
       <div class="markdown-prev_next-content">
-        <div :class="{ 'is-visibility': prev && prev._dir === page._dir }">
+        <div :class="{ 'is-visibility': hasPrev }">
           <MarkdownStepNav
+            v-if="hasPrev"
             type="prev"
             :path="prev._path"
             :title="prev.title"
           ></MarkdownStepNav>
         </div>
-        <div :class="{ 'is-visibility': next && next._dir === page._dir }">
+        <div :class="{ 'is-visibility': hasNext }">
           <MarkdownStepNav
+            v-if="hasNext"
             type="next"
             :path="next._path"
             :title="next.title"
@@ -32,6 +34,13 @@
 export interface Props {}
 
 const { page, next, prev } = useContent()
+
+const hasPrev = computed(
+  () => prev.value && prev.value?._dir === page.value?._dir,
+)
+const hasNext = computed(
+  () => next.value && next.value?._dir === page.value?._dir,
+)
 </script>
 
 <style lang="scss" scoped>

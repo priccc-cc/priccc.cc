@@ -2,7 +2,9 @@
   <div class="app-header-container">
     <div class="logo-container" @click="handleLogoClicked">AdvanceMyself</div>
     <div class="menu-container">
-      <AppHeaderMenu></AppHeaderMenu>
+      <ClientOnly>
+        <AppHeaderMenu></AppHeaderMenu>
+      </ClientOnly>
     </div>
     <div class="action-contaienr">
       <ClientOnly>

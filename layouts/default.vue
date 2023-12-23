@@ -11,7 +11,9 @@
         <slot />
       </el-main>
       <el-aside class="root-anchor">
-        <app-toc></app-toc>
+        <client-only>
+          <app-toc></app-toc>
+        </client-only>
       </el-aside>
     </el-container>
     <!-- <el-footer>Footer</el-footer> -->

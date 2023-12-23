@@ -1,5 +1,5 @@
 <template>
-  <div class="app-toc-container">
+  <div v-if="toc" class="app-toc-container">
     <div v-for="item in toc.links" class="anchor-item item-level-1">
       <NuxtLink
         :class="['anchor-text', { 'actived-anchor': item.id === activeId }]"
@@ -29,13 +29,16 @@
 <script setup lang="ts">
 import { useActiveScroll } from 'vue-use-active-scroll'
 
-const { toc } = useContent()
-const ids = computed(() =>
-  toc.value.links.flatMap(({ id = '', children = [] }) => [
+const { toc }: { toc: Ref } = useContent()
+
+const ids = computed(() => {
+  const links = toc.value ? toc.value.links : []
+
+  return links.flatMap(({ id = '', children = [] }) => [
     id,
     ...children.map(({ id }) => id),
-  ]),
-)
+  ])
+})
 const scrollOption = {
   jumpToFirst: true,
   boundaryOffset: { toTop: 60, toBottom: 60 },
