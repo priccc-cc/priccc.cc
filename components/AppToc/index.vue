@@ -1,22 +1,26 @@
 <template>
   <div class="app-toc-container">
-    <div
-      v-for="item in links"
-      class="anchor-item item-level-1"
-      @click="setActive(item.id)"
-    >
-      <div :class="['anchor-text', { 'actived-anchor': item.id === activeId }]">
+    <div v-for="item in toc.links" class="anchor-item item-level-1">
+      <NuxtLink
+        :class="['anchor-text', { 'actived-anchor': item.id === activeId }]"
+        :to="`#${item.id}`"
+        @click="setActive(item.id)"
+      >
         <span>{{ item.text }}</span>
-      </div>
+      </NuxtLink>
 
       <div
         v-if="item.children"
         v-for="sub in item.children"
         class="anchor-item item-level-2"
       >
-        <div class="anchor-text">
+        <NuxtLink
+          :class="['anchor-text', { 'actived-anchor': sub.id === activeId }]"
+          :to="`#${sub.id}`"
+          @click="setActive(sub.id)"
+        >
           <span>{{ sub.text }}</span>
-        </div>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -25,31 +29,24 @@
 <script setup lang="ts">
 import { useActiveScroll } from 'vue-use-active-scroll'
 
-// export interface Props {
-//   toc: any
-// }
-
-// const props = defineProps<Props>()
-// const { toc } = toRefs(props)
 const { toc } = useContent()
-const links = toc.value.links || []
 const ids = computed(() =>
-  links.flatMap(({ id = '', children = [] }) => [
+  toc.value.links.flatMap(({ id = '', children = [] }) => [
     id,
     ...children.map(({ id }) => id),
   ]),
 )
-const { setActive, activeId } = useActiveScroll(ids, { jumpToFirst: true })
-
-watch(activeId, val => console.log(val))
-
-console.log(222, ids.value, activeId.value)
-
-// console.log(333, toc.value)
+const scrollOption = {
+  jumpToFirst: true,
+  boundaryOffset: { toTop: 60, toBottom: 60 },
+}
+const { setActive, activeId } = useActiveScroll(ids, scrollOption)
 </script>
 
 <style lang="scss" scoped>
 .app-toc-container {
+  padding-top: 14px;
+
   .anchor-item {
     > .anchor-text {
       padding: 4px 12px;
@@ -65,7 +62,7 @@ console.log(222, ids.value, activeId.value)
       &:hover,
       &.actived-anchor {
         color: var(--el-menu-hover-text-color);
-        background-color: var(--el-menu-hover-bg-color);
+        // background-color: var(--el-menu-hover-bg-color);
         border-radius: 4px;
       }
     }

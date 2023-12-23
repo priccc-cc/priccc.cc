@@ -21,12 +21,22 @@ import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
 const route = useRoute()
 const router = useRouter()
-const type = route.params.contentType as string
-const category = route.params.category as string
-const title = route.params.title as string
-const categoryPath = category ? `/${type}/${category}` : `/${type}`
 const contentQuery = { where: [{ _type: { $eq: 'markdown' } }] }
-const activeContentPath = computed(() => categoryPath + '/' + title)
+const categoryPath = ref('')
+const activeContentPath = ref('')
+
+watch(
+  () => route.params.title,
+  () => {
+    const type = route.params.contentType as string
+    const category = route.params.category as string
+    const title = route.params.title as string
+
+    categoryPath.value = category ? `/${type}/${category}` : `/${type}`
+    activeContentPath.value = categoryPath.value + '/' + title
+  },
+  { immediate: true },
+)
 
 function handleContentSlelcted(doc: ParsedContent) {
   router.push(doc._path!)

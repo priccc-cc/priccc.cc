@@ -1,12 +1,12 @@
 <template>
   <div class="contents-document-container">
     <ClientOnly>
-      <CommonMd
+      <CommonMarkdown
         :path="$route.path"
         :type="type"
         :category="category"
         :title="title"
-      ></CommonMd>
+      ></CommonMarkdown>
     </ClientOnly>
   </div>
 </template>
