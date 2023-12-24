@@ -32,6 +32,7 @@ jobs:
       - name: Deploy To Server
         uses: easingthemes/ssh-deploy@main
         env:
+          SCRIPT_BEFORE: ls
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: '-avzr --delete'
           SOURCE: '.output'
