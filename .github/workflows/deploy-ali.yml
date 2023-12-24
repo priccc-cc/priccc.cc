@@ -1,6 +1,7 @@
 name: Build And Deploy To Aliyun ECS
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - release
