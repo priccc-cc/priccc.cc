@@ -1,6 +1,6 @@
 <template>
   <div class="app-header-container">
-    <div class="logo-container" @click="handleLogoClicked">AdvanceMyself</div>
+    <div class="logo-container" @click="handleLogoClicked">知无涯</div>
     <div class="menu-container">
       <ClientOnly>
         <AppHeaderMenu></AppHeaderMenu>
@@ -45,20 +45,15 @@ function handleLogoClicked() {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: 'DancingScript';
-  src: url('~/assets/fonts/DancingScript/DancingScript-Bold.woff2')
-    format('woff2');
-}
 .app-header-container {
   display: flex;
   align-items: center;
 
   .logo-container {
     height: 100%;
-    font-family: DancingScript;
+    font-family: AlimamaDaoLiTi;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 30px;
     border-bottom: 2px solid transparent;
     cursor: pointer;
   }

@@ -14,3 +14,11 @@ body {
   fill: currentColor;
   overflow: hidden;
 }
+
+@font-face {
+  font-family: 'AlimamaDaoLiTi';
+  font-weight: 400;
+  src: url('~/assets/fonts/AlimamaDaoLiTi/AlimamaDaoLiTi.woff2') format('woff2'),
+    url('~/assets/fonts/AlimamaDaoLiTi/AlimamaDaoLiTi.woff') format('woff');
+  font-display: swap;
+}

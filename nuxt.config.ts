@@ -2,10 +2,10 @@
 export default defineNuxtConfig({
   extends: '@nuxt-themes/typography',
   modules: [
+    '@nuxt/content',
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@element-plus/nuxt',
-    '@nuxt/content',
   ],
   devtools: { enabled: true },
   app: {
@@ -13,23 +13,17 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'stylesheet',
-          href: '//at.alicdn.com/t/c/font_4379482_78ayyr5kp6f.css',
+          href: '//at.alicdn.com/t/c/font_4379482_3y4w4a5pr9k.css',
         },
       ],
-      script: [{ src: '//at.alicdn.com/t/c/font_4379482_78ayyr5kp6f.js' }],
+      script: [{ src: '//at.alicdn.com/t/c/font_4379482_3y4w4a5pr9k.js' }],
     },
   },
   content: {
     documentDriven: true,
     markdown: {
-      // anchorLinks: { depth: 4, exclude: [1] },
-      // remarkPlugins: ['remark-gfm', ['remark-toc', { maxDepth: 2 }]],
       remarkPlugins: ['remark-gfm'],
-      rehypePlugins: [
-        'rehype-figure',
-        // ['@jsdevtools/rehype-toc', rehypeTocOption],
-      ],
-      // toc: { depth: 4, searchDepth: 4 },
+      rehypePlugins: ['rehype-figure'],
     },
     highlight: {
       theme: {

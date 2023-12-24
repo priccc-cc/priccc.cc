@@ -1,7 +1,9 @@
 <template>
   <el-container class="layout-root">
     <el-header class="root-header">
-      <app-header></app-header>
+      <client-only>
+        <app-header></app-header>
+      </client-only>
     </el-header>
     <el-container class="root-content">
       <el-aside class="root-aside">

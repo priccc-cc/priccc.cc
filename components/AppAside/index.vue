@@ -1,16 +1,18 @@
 <template>
   <div class="app-aside-container">
-    <ContentList :path="categoryPath" v-slot="{ list }" :query="contentQuery">
-      <div
-        v-for="item of list"
-        :key="item._path"
-        :class="[
-          'nav-item',
-          { 'nav-item-actived': item._path === activeContentPath },
-        ]"
-        @click="handleContentSlelcted(item)"
-      >
-        <div class="item-title">{{ item.title }}</div>
+    <ContentList path="/" :query="contentQuery" v-slot="{ list }">
+      <div>
+        <div
+          v-for="item of list"
+          :key="item._path"
+          :class="[
+            'nav-item',
+            { 'nav-item-actived': item._path === $route.path },
+          ]"
+          @click="handleContentSlelcted(item)"
+        >
+          <div class="item-title">{{ item.title }}</div>
+        </div>
       </div>
     </ContentList>
   </div>
@@ -22,8 +24,10 @@ import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 const route = useRoute()
 const router = useRouter()
 const contentQuery = { where: [{ _type: { $eq: 'markdown' } }] }
+const isReady = ref(false)
 const categoryPath = ref('')
-const activeContentPath = ref('')
+
+console.log(route)
 
 watch(
   () => route.params.title,
@@ -33,9 +37,9 @@ watch(
     const title = route.params.title as string
 
     categoryPath.value = category ? `/${type}/${category}` : `/${type}`
-    activeContentPath.value = categoryPath.value + '/' + title
+    isReady.value = true
   },
-  { immediate: true },
+  // { immediate: true },
 )
 
 function handleContentSlelcted(doc: ParsedContent) {

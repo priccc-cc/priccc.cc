@@ -1,6 +1,6 @@
 # 浏览器缓存
 
-```flow
+```
   st=>start: 用户请求资源
   op1=>operation: 直接使用缓存
   op2=>operation: 向服务器请求 If-None-Match
