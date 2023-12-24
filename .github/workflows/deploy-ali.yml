@@ -3,10 +3,10 @@ name: Build And Deploy To Aliyun ECS
 on:
   push:
     branches:
-    - release
+      - release
   pull_request:
     branches:
-    - release
+      - release
 
 jobs:
   Build:
@@ -30,6 +30,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: '-avzr --delete'
           SOURCE: '.output'
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_HOST: ${{ vars.REMOTE_HOST }}
+          REMOTE_USER: ${{ vars.REMOTE_USER }}
           TARGET: 'instance/advance-myself'
