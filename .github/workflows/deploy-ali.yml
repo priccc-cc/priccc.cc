@@ -1,0 +1,35 @@
+name: Build And Deploy To Aliyun ECS
+
+on:
+  push:
+    branches:
+    - release
+  pull_request:
+    branches:
+    - release
+
+jobs:
+  Build:
+    name: build project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.14.0'
+      - name: Install Dependencies
+        run: yarn install
+      - name: Run Builder
+        run: yarn build
+      - name: Deploy To Server
+        uses: easingthemes/ssh-deploy@v5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: '-avzr --delete'
+          SOURCE: '.output'
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: 'instance/advance-myself'
