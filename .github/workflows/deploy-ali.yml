@@ -20,12 +20,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.14.0'
+      - name: Install Yarn
+        run: npm install -g yarn
       - name: Install Dependencies
         run: yarn install
       - name: Run Builder
         run: yarn build
       - name: Deploy To Server
-        uses: easingthemes/ssh-deploy@v5
+        uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: '-avzr --delete'
