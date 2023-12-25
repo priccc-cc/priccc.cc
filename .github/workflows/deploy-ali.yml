@@ -41,4 +41,4 @@ jobs:
           SCRIPT_AFTER: |
             pm2 stop all
             mv -f instance/.templates/.output instance/advance-myself/.output
-            sh instance/advance-myself/start.sh
+            pm2 restart instance/advance-myself/ecosystem.config.js --env production
