@@ -37,4 +37,8 @@ jobs:
           SOURCE: '.output'
           REMOTE_HOST: ${{ vars.REMOTE_HOST }}
           REMOTE_USER: ${{ vars.REMOTE_USER }}
-          TARGET: 'instance/advance-myself'
+          TARGET: 'instance/.templates'
+          SCRIPT_AFTER: |
+            pm2 stop all
+            mv -f instance/.templates/.output instance/advance-myself/.output
+            sh instance/advance-myself/start.sh
