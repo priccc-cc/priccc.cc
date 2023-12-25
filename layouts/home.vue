@@ -1,11 +1,24 @@
 <template>
-  <div>
-    <ClientOnly>
-      <slot></slot>
-    </ClientOnly>
-  </div>
+  <el-container class="layout-home">
+    <el-main class="root-main">
+      <ClientOnly>
+        <slot></slot>
+      </ClientOnly>
+    </el-main>
+    <el-footer class="root-footer">
+      <app-footer></app-footer>
+    </el-footer>
+  </el-container>
 </template>
 
-<script setup lang="ts"></script>
+<style lang="scss" scoped>
+.layout-home {
+  .root-main {
+    padding: 0;
+  }
 
-<style lang="scss" scoped></style>
+  .root-footer {
+    border-top: 1px solid var(--el-border-color);
+  }
+}
+</style>

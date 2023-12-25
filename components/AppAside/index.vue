@@ -1,6 +1,6 @@
 <template>
-  <div class="app-aside-container">
-    <ContentList path="/" :query="contentQuery" v-slot="{ list }">
+  <div v-if="categoryPath" :key="categoryPath" class="app-aside-container">
+    <ContentList :path="categoryPath" :query="contentQuery" v-slot="{ list }">
       <div>
         <div
           v-for="item of list"
@@ -24,10 +24,7 @@ import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 const route = useRoute()
 const router = useRouter()
 const contentQuery = { where: [{ _type: { $eq: 'markdown' } }] }
-const isReady = ref(false)
 const categoryPath = ref('')
-
-console.log(route)
 
 watch(
   () => route.params.title,
@@ -37,9 +34,8 @@ watch(
     const title = route.params.title as string
 
     categoryPath.value = category ? `/${type}/${category}` : `/${type}`
-    isReady.value = true
   },
-  // { immediate: true },
+  { immediate: true },
 )
 
 function handleContentSlelcted(doc: ParsedContent) {
@@ -53,7 +49,7 @@ function handleContentSlelcted(doc: ParsedContent) {
     display: flex;
     align-items: center;
     height: 40px;
-    padding: 0 16px;
+    padding: 0 32px;
     cursor: pointer;
 
     &:hover,

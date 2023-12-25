@@ -1,6 +1,9 @@
 <template>
   <div class="app-header-container">
-    <div class="logo-container" @click="handleLogoClicked">知无涯</div>
+    <div class="logo-container" @click="handleLogoClicked">
+      <img class="logo-image" src="~/assets/images/logo.png" alt="" />
+      <span>无涯</span>
+    </div>
     <div class="menu-container">
       <ClientOnly>
         <AppHeaderMenu></AppHeaderMenu>
@@ -26,9 +29,14 @@
         </div>
       </ClientOnly>
       <el-divider direction="vertical" />
-      <div class="github-content">
+      <ElLink
+        class="github-content"
+        :underline="false"
+        href="https://github.com/Priccc/advance-myself"
+        target="_blank"
+      >
         <i class="iconfont icon-github"></i>
-      </div>
+      </ElLink>
     </div>
   </div>
 </template>
@@ -50,12 +58,22 @@ function handleLogoClicked() {
   align-items: center;
 
   .logo-container {
+    display: flex;
+    align-items: center;
     height: 100%;
-    font-family: AlimamaDaoLiTi;
-    font-weight: 500;
-    font-size: 30px;
     border-bottom: 2px solid transparent;
     cursor: pointer;
+
+    .logo-image {
+      width: 28px;
+      margin-right: 4px;
+    }
+
+    span {
+      font-family: AlimamaDongFangDaKai;
+      font-weight: 500;
+      font-size: 24px;
+    }
   }
 
   .menu-container {

@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-root">
+  <el-container class="layout-default">
     <el-header class="root-header">
       <client-only>
         <app-header></app-header>
@@ -18,7 +18,9 @@
         </client-only>
       </el-aside>
     </el-container>
-    <!-- <el-footer>Footer</el-footer> -->
+    <el-footer class="root-footer">
+      <app-footer></app-footer>
+    </el-footer>
   </el-container>
 </template>
 
@@ -26,13 +28,14 @@
 $header_height: 60px;
 $content_height: calc(100vh - $header_height);
 
-.layout-root {
+.layout-default {
   .root-header {
     position: sticky;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1;
+    padding: 0 32px;
     box-shadow: inset 0 -1px 0 0 var(--el-menu-border-color);
     background-color: var(--el-bg-color);
   }
@@ -62,6 +65,10 @@ $content_height: calc(100vh - $header_height);
       height: $content_height;
       border-left: 1px solid var(--el-border-color);
     }
+  }
+
+  .root-footer {
+    border-top: 1px solid var(--el-border-color);
   }
 }
 </style>

@@ -13,17 +13,39 @@
         </el-icon>
       </template>
     </el-input>
+
+    <Teleport to="body">
+      <el-dialog
+        v-model="searchModalShow"
+        width="500"
+        :show-close="false"
+        destroy-on-close
+      >
+        <span>此功能暂不可用</span>
+      </el-dialog>
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
 const searchKey = ref('')
 const searchPlaceholder = ref('')
+const searchModalShow = ref(false)
+const keys = useMagicKeys()
+
+// The handler for show search markdown content modal
+function handleShowSearchModal() {
+  searchModalShow.value = true
+}
 
 onMounted(() => {
   const os = platformOs()
+  const isMac = os === 'macos'
+  const magicKey = isMac ? keys.command_k : keys.ctrl_k
 
-  searchPlaceholder.value = os === 'macos' ? '⌘+K' : 'Ctrl+K'
+  searchPlaceholder.value = isMac ? '⌘+K' : 'Ctrl+K'
+
+  whenever(magicKey, handleShowSearchModal)
 })
 </script>
 

@@ -1,5 +1,13 @@
 @use 'element-plus/theme-chalk/dark/css-vars.css';
 
+@font-face {
+  font-family: 'AlimamaDongFangDaKai';
+  font-weight: 400;
+  src: url('~/assets/fonts/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular.woff2') format('woff2'),
+    url('~/assets/fonts/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular.woff') format('woff');
+  font-display: swap;
+}
+
 html,
 body {
   margin: 0;
@@ -13,12 +21,4 @@ body {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
-}
-
-@font-face {
-  font-family: 'AlimamaDaoLiTi';
-  font-weight: 400;
-  src: url('~/assets/fonts/AlimamaDaoLiTi/AlimamaDaoLiTi.woff2') format('woff2'),
-    url('~/assets/fonts/AlimamaDaoLiTi/AlimamaDaoLiTi.woff') format('woff');
-  font-display: swap;
 }

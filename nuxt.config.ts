@@ -33,4 +33,9 @@ export default defineNuxtConfig({
       preload: ['javascript'],
     },
   },
+  vue: {
+    compilerOptions: {
+      isCustomElement: tag => ['css-doodle'].includes(tag),
+    },
+  },
 })
