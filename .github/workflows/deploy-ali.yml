@@ -40,5 +40,5 @@ jobs:
           TARGET: 'instance/.templates'
           SCRIPT_AFTER: |
             pm2 stop all
-            mv -f instance/.templates/.output instance/advance-myself
+            rsync -a --delete instance/.templates/.output/ instance/advance-myself/.output/
             pm2 restart instance/advance-myself/ecosystem.config.js --env production
