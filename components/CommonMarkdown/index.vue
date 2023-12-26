@@ -3,26 +3,26 @@
     <div class="markdown-content">
       <ContentDoc>
         <template #not-found>
-          <h1>Document not found</h1>
+          <el-empty description="文章逃跑了~" />
         </template>
       </ContentDoc>
 
       <!-- 上下markdown -->
       <div class="markdown-prev_next-content">
-        <div :class="{ 'is-visibility': hasPrev }">
+        <div :class="{ 'is-visibility': prev }">
           <MarkdownStepNav
-            v-if="hasPrev"
+            v-if="prev"
             type="prev"
-            :path="prev._path"
-            :title="prev.title"
+            :path="prev._path!"
+            :title="prev.title!"
           ></MarkdownStepNav>
         </div>
-        <div :class="{ 'is-visibility': hasNext }">
+        <div :class="{ 'is-visibility': next }">
           <MarkdownStepNav
-            v-if="hasNext"
+            v-if="next"
             type="next"
-            :path="next._path"
-            :title="next.title"
+            :path="next._path!"
+            :title="next.title!"
           ></MarkdownStepNav>
         </div>
       </div>
@@ -33,13 +33,28 @@
 <script setup lang="ts">
 export interface Props {}
 
-const { page, next, prev } = useContent()
-
-const hasPrev = computed(
-  () => prev.value && prev.value?._dir === page.value?._dir,
+const route = useRoute()
+const pathArray = route.path
+  .split('/')
+  .filter(x => !!x)
+  .slice(0, -1)
+const { data: contents } = await useAsyncData(() =>
+  queryContent(pathArray[0], ...pathArray.slice(1))
+    .where({ _type: { $eq: 'markdown' } })
+    .find(),
 )
-const hasNext = computed(
-  () => next.value && next.value?._dir === page.value?._dir,
+const currentIndex = computed(() =>
+  contents.value?.findIndex(x => x._path === route.path),
+)
+const prev = computed(() =>
+  currentIndex.value === undefined
+    ? undefined
+    : contents.value![currentIndex.value - 1],
+)
+const next = computed(() =>
+  currentIndex.value === undefined
+    ? undefined
+    : contents.value![currentIndex.value + 1],
 )
 </script>
 

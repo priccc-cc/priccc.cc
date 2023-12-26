@@ -1,17 +1,17 @@
 <template>
   <div v-if="toc && toc.links && ids.length > 1" class="app-toc-container">
-    <div v-for="item in toc.links" class="anchor-item item-level-1">
+    <div v-for="link in toc.links" class="anchor-item item-level-1">
       <NuxtLink
-        :class="['anchor-link', { 'actived-anchor': item.id === activeId }]"
-        :to="`#${item.id}`"
-        @click="setActive(item.id)"
+        :class="['anchor-link', { 'actived-anchor': link.id === activeId }]"
+        :to="`#${link.id}`"
+        @click="setActive(link.id)"
       >
-        {{ item.text }}
+        {{ link.text }}
       </NuxtLink>
 
       <div
-        v-if="item.children"
-        v-for="sub in item.children"
+        v-if="link.children"
+        v-for="sub in link.children"
         class="anchor-item item-level-2"
       >
         <NuxtLink
@@ -29,8 +29,14 @@
 <script setup lang="ts">
 import { useActiveScroll } from 'vue-use-active-scroll'
 
-const { toc }: { toc: Ref } = useContent()
-
+const route = useRoute()
+const pathArray = route.path.split('/').filter(x => !!x)
+const { data } = await useAsyncData(() =>
+  queryContent(pathArray[0], ...pathArray.slice(1))
+    .where({ _type: { $eq: 'markdown' } })
+    .findOne(),
+)
+const toc = computed(() => data.value?.body?.toc)
 const ids = computed(() => {
   const links = toc.value ? toc.value.links : []
 
