@@ -22,9 +22,7 @@
       animation: move @rn(5, 15, 3)s infinite @rn(-20, -10, 3)s linear alternate;
       box-shadow: 0 0 1px #fff, 0 0 5px #fff;
       @keyframes move {
-        100% {
-          margin-top: 500px;
-        }
+        100% { margin-top: 500px; }
       }
   </css-doodle>
   </div>

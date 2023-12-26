@@ -1,12 +1,12 @@
 <template>
-  <div v-if="toc" class="app-toc-container">
+  <div v-if="toc && toc.links && ids.length > 1" class="app-toc-container">
     <div v-for="item in toc.links" class="anchor-item item-level-1">
       <NuxtLink
-        :class="['anchor-text', { 'actived-anchor': item.id === activeId }]"
+        :class="['anchor-link', { 'actived-anchor': item.id === activeId }]"
         :to="`#${item.id}`"
         @click="setActive(item.id)"
       >
-        <span>{{ item.text }}</span>
+        {{ item.text }}
       </NuxtLink>
 
       <div
@@ -15,11 +15,11 @@
         class="anchor-item item-level-2"
       >
         <NuxtLink
-          :class="['anchor-text', { 'actived-anchor': sub.id === activeId }]"
+          :class="['anchor-link', { 'actived-anchor': sub.id === activeId }]"
           :to="`#${sub.id}`"
           @click="setActive(sub.id)"
         >
-          <span>{{ sub.text }}</span>
+          {{ sub.text }}
         </NuxtLink>
       </div>
     </div>
@@ -48,37 +48,33 @@ const { setActive, activeId } = useActiveScroll(ids, scrollOption)
 
 <style lang="scss" scoped>
 .app-toc-container {
-  padding-top: 14px;
-
   .anchor-item {
-    > .anchor-text {
-      padding: 4px 12px;
+    .anchor-link {
+      display: block;
+      width: 100%;
+      padding: 4px 0;
+      padding-left: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       font-size: 12px;
       cursor: pointer;
-
-      & span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
 
       &:hover,
       &.actived-anchor {
         color: var(--el-menu-hover-text-color);
-        // background-color: var(--el-menu-hover-bg-color);
-        border-radius: 4px;
       }
     }
 
     &.item-level-1 {
-      > .anchor-text {
+      > .anchor-link {
         font-weight: bold;
       }
     }
 
     &.item-level-2 {
-      > .anchor-text {
-        padding-left: 20px;
+      > .anchor-link {
+        padding-left: 24px;
       }
     }
   }

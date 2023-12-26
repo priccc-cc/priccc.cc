@@ -12,6 +12,11 @@ export default defineNuxtConfig({
     head: {
       link: [
         {
+          rel: 'icon',
+          type: 'iamge/x-icon',
+          href: '/favicon.ico',
+        },
+        {
           rel: 'stylesheet',
           href: '//at.alicdn.com/t/c/font_4379482_3y4w4a5pr9k.css',
         },

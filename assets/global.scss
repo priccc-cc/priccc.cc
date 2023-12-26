@@ -1,4 +1,5 @@
-@use 'element-plus/theme-chalk/dark/css-vars.css';
+@use './theme/default/vars.scss' as default-theme;
+@use './theme/dark/vars.scss' as dark-theme;
 
 @font-face {
   font-family: 'AlimamaDongFangDaKai';
