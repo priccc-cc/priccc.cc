@@ -43,13 +43,15 @@ $content_height: calc(100vh - $header_height);
   .root-content {
     position: relative;
     min-height: $content_height;
+    padding: 0 32px;
 
     .root-aside {
       position: sticky;
       left: 0;
       top: $header_height;
-      width: 240px;
+      width: 200px;
       height: $content_height;
+      padding: 16px 0;
       border-right: 1px solid var(--el-border-color);
     }
 
@@ -61,9 +63,15 @@ $content_height: calc(100vh - $header_height);
       position: sticky;
       top: $header_height;
       right: 0;
-      width: 180px;
+      width: 150px;
       height: $content_height;
+      padding: 16px 0;
       border-left: 1px solid var(--el-border-color);
+
+      &:empty {
+        // display: none;
+        border: none;
+      }
     }
   }
 

@@ -31,7 +31,6 @@ watch(
   () => {
     const type = route.params.contentType as string
     const category = route.params.category as string
-    const title = route.params.title as string
 
     categoryPath.value = category ? `/${type}/${category}` : `/${type}`
   },
@@ -48,18 +47,24 @@ function handleContentSlelcted(doc: ParsedContent) {
   .nav-item {
     display: flex;
     align-items: center;
-    height: 40px;
-    padding: 0 32px;
+    height: 34px;
+    padding-right: 32px;
     cursor: pointer;
 
     &:hover,
     &.nav-item-actived {
       color: var(--el-menu-hover-text-color);
-      background-color: var(--el-menu-hover-bg-color);
     }
 
     .item-icon {
       margin-right: 8px;
+    }
+
+    .item-title {
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }

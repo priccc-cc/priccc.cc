@@ -3,6 +3,7 @@
     class="menu-container"
     mode="horizontal"
     :default-active="defaultActive"
+    :close-on-click-outside="true"
     @select="onMeunSelected"
   >
     <!-- Markdown content menu list -->
@@ -64,13 +65,6 @@
 </template>
 
 <script setup lang="ts">
-export interface NavItem {
-  title: string
-  _path: string
-  icon: string
-  children?: NavItem[]
-}
-
 const route = useRoute()
 const router = useRouter()
 const type = route.params.contentType as string
@@ -80,9 +74,20 @@ const { data: navigation } = await useAsyncData('navigation', () =>
   fetchContentNavigation(),
 )
 
-defaultActive.value = category ? `/${type}/${category}` : `/${type}`
+// This is markdown route.
+if (type) {
+  defaultActive.value = category ? `/${type}/${category}` : `/${type}`
+}
+// Is not markdown route.
+else {
+  defaultActive.value = route.name as string
+}
 
 function onMeunSelected(key: string, keyPath: string[]) {
+  if (key === 'game') {
+    return router.push('/' + key)
+  }
+
   const keyPathRe = keyPath.filter(x => x !== 'sub-menu-more')
   const currentType = navigation.value?.find(
     item => item._path === keyPathRe[0],
