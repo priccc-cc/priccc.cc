@@ -1,11 +1,15 @@
 <template>
   <div class="common-markdown-component">
-    <div class="markdown-content">
+    <div v-if="currentPage" class="markdown-content">
       <ContentDoc>
         <template #not-found>
           <el-empty description="文章逃跑了~" />
         </template>
       </ContentDoc>
+      <!-- <ContentRenderer :value="currentPage">
+        <ProseH1 id="currentPage.title">{{ currentPage.title }}</ProseH1>
+        <ContentRendererMarkdown :value="currentPage" />
+      </ContentRenderer> -->
 
       <!-- 上下markdown -->
       <div class="markdown-prev_next-content">
@@ -46,6 +50,12 @@ const { data: contents } = await useAsyncData(() =>
 const currentIndex = computed(() =>
   contents.value?.findIndex(x => x._path === route.path),
 )
+const currentPage = computed(() => {
+  if (!contents.value) return null
+  if (currentIndex.value === undefined) return null
+
+  return contents.value[currentIndex.value]
+})
 const prev = computed(() =>
   currentIndex.value === undefined
     ? undefined
@@ -56,6 +66,8 @@ const next = computed(() =>
     ? undefined
     : contents.value![currentIndex.value + 1],
 )
+
+// watch(currentPage, () => console.log(currentPage.value))
 </script>
 
 <style lang="scss" scoped>

@@ -30,9 +30,9 @@
 import { useActiveScroll } from 'vue-use-active-scroll'
 
 const route = useRoute()
-const pathArray = route.path.split('/').filter(x => !!x)
-const { data } = await useAsyncData(() =>
-  queryContent(pathArray[0], ...pathArray.slice(1))
+const pathArray = computed(() => route.path.split('/').filter(x => !!x))
+const { data, refresh } = await useAsyncData(() =>
+  queryContent(pathArray.value[0], ...pathArray.value.slice(1))
     .where({ _type: { $eq: 'markdown' } })
     .findOne(),
 )
@@ -50,6 +50,11 @@ const scrollOption = {
   boundaryOffset: { toTop: 60, toBottom: 60 },
 }
 const { setActive, activeId } = useActiveScroll(ids, scrollOption)
+
+watch(
+  () => route.path,
+  () => refresh(),
+)
 </script>
 
 <style lang="scss" scoped>

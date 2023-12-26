@@ -1,7 +1,7 @@
 ---
 title: '浏览器生命周期'
-descript: ''
-tags: ['Browser', 'JavaScript']
+description: '111'
+tag: ['Browser', 'JavaScript']
 ---
 
 # Page Lifecycle API
