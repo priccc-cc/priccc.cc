@@ -18,7 +18,13 @@
       </div>
 
       <div class="start-action">
-        <el-button type="primary" size="large" round @click="handleGetStart">
+        <el-button
+          v-if="firstNavigation"
+          type="primary"
+          size="large"
+          round
+          @click="handleGetStart"
+        >
           开始吧
           <i class="iconfont icon-arrowRight"></i>
         </el-button>
@@ -38,24 +44,33 @@ const BrackgroundAnim1 = resolveComponent('HomePageBrackgroundAnim1')
 const BrackgroundAnim2 = resolveComponent('HomePageBrackgroundAnim2')
 
 const router = useRouter()
-const { navigation } = useContent()
 const Backgrounder = shallowRef<Component | null>()
 const tl = gsap.timeline({}) // Registe GSAP
+const { data: navigation } = await useAsyncData('navigation', () =>
+  fetchContentNavigation(),
+)
 // The first markdown content navgation
 const firstNavigation = computed(() => {
+  if (!navigation.value) return null
+
   const contentType = navigation.value[0]
+
+  if (!contentType.children) return null
+
   const categoryOrContent = contentType.children[0]
 
-  if (contentType.hasSubDir) {
+  if (contentType.hasSubDir && categoryOrContent.children) {
     return categoryOrContent.children[0]
   }
 
   return categoryOrContent
 })
 
+watch(navigation, () => console.log(navigation.value))
+
 // Start action handler
 function handleGetStart() {
-  router.push(firstNavigation.value._path)
+  router.push(firstNavigation.value!._path)
 }
 // Home content animation handler
 function handleStartAnimation() {

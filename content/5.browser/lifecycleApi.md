@@ -1,3 +1,9 @@
+---
+title: '浏览器生命周期'
+descript: ''
+tags: ['Browser', 'JavaScript']
+---
+
 # Page Lifecycle API
 
 ## 一、生命周期阶段
