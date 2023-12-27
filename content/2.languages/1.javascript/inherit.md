@@ -1,3 +1,12 @@
+---
+title: '继承'
+description: ''
+tag: ['Javascript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
+
 JavaScript 三大特性： 封装、继承和多态
 
 [JS继承题-封装篇](https://juejin.cn/post/6844904094948130824)

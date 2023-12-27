@@ -1,3 +1,12 @@
+---
+title: '定时器 RequestAnimationFrame'
+description: ''
+tag: ['Javascript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
+
 如何使用？
 ```javascript
 handlerId = requestAnimationFrame(callback)

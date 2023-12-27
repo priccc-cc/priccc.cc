@@ -1,4 +1,11 @@
-# Proxy
+---
+title: '代理 Proxy'
+description: ''
+tag: ['Javascript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
 
 `var proxy = new Proxy(target, handler);`
 

@@ -2,9 +2,10 @@
 title: '浏览器生命周期'
 description: '111'
 tag: ['Browser', 'JavaScript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: '2023-12-27'
 ---
-
-# Page Lifecycle API
 
 ## 一、生命周期阶段
 

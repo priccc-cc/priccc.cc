@@ -1,7 +1,10 @@
 ---
 title: '服务端渲染'
-description: '服务端渲染'
-category: 'xxx'
+description: ''
+tag: ['服务端渲染']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
 ---
 
 ## 服务端渲染

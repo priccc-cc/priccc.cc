@@ -1,3 +1,12 @@
+---
+title: '稀疏数组 SqarseArray'
+description: ''
+tag: ['Javascript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
+
 # JavaScript 中的稀疏数组
 
 

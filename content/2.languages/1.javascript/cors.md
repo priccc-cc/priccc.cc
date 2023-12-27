@@ -1,4 +1,11 @@
-## 跨域资源共享 CORS
+---
+title: '跨域资源共享 CORS'
+description: ''
+tag: ['JavaScript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
 
 CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）。
 它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。

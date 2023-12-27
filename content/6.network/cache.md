@@ -1,4 +1,11 @@
-# 浏览器缓存
+---
+title: '浏览器缓存'
+description: ''
+tag: ['浏览器', 'Network']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
 
 ```
   st=>start: 用户请求资源
