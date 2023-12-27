@@ -1,4 +1,11 @@
-## Event loop
+---
+title: '时间循环 EventLoop'
+description: ''
+tag: ['Javascript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
 
 ### 定义
 为了协调事件（event），用户交互（user interaction），脚本（script），渲染（rendering），网络（networking）等，用户代理（user agent）必须使用事件循环（event loops）。

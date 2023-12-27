@@ -1,4 +1,11 @@
-# 函数式编程
+---
+title: '函数式编程'
+description: ''
+tag: ['Javascript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
 
 `函数式编程`更加强调在编程过程中把更多的关注点放在如何去`构建关系`
 

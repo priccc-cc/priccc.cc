@@ -1,17 +1,13 @@
 <template>
   <div class="common-markdown-component">
     <div v-if="currentPage" class="markdown-content">
-      <!-- <ContentDoc>
-        <template #not-found>
-          <el-empty description="文章逃跑了~" />
-        </template>
-      </ContentDoc> -->
       <ContentRenderer :value="currentPage">
-        <!-- <ProseH1 id="current.page.heading.title">
-          {{ currentPage.title }}
-        </ProseH1> -->
         <TheTitle :data="currentPage"></TheTitle>
         <ContentRendererMarkdown :value="currentPage" />
+
+        <template #empty>
+          <el-empty description="文章逃跑了~" />
+        </template>
       </ContentRenderer>
 
       <!-- 上下markdown -->
@@ -33,6 +29,8 @@
           ></MarkdownStepNav>
         </div>
       </div>
+
+      <!-- TODO: Comments Block -->
     </div>
   </div>
 </template>

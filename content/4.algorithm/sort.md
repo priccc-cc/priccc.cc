@@ -1,4 +1,11 @@
-# 排序算法
+---
+title: '排序算法 Sort'
+description: ''
+tag: ['Javascript', '算法']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
 
 ### 排序的定义
 对一序列对象根据某个关键字进行排序

@@ -1,5 +1,10 @@
 ---
-title: '链表'
+title: '链表 LinkList'
+description: ''
+tag: ['Javascript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
 ---
 
 ## 什么是链表？

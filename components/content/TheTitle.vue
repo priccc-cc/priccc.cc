@@ -18,12 +18,12 @@
         <div v-if="data.author" class="author-content">
           <ElTag>作者: @{{ data.author }}</ElTag>
         </div>
-        <div v-if="data" class="datetime-content">
-          <div class="datetime-item">
+        <div v-if="data.createdAt" class="datetime-content">
+          <div v-if="data.createdAt" class="datetime-item">
             <span>创建于</span>
             <span>{{ data.createdAt }}</span>
           </div>
-          <div class="datetime-item">
+          <div v-if="data.updatedAt" class="datetime-item">
             <span>更新于</span>
             <span>{{ data.updatedAt }}</span>
           </div>

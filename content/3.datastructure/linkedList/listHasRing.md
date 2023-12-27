@@ -1,3 +1,12 @@
+---
+title: '循环链表'
+description: ''
+tag: ['Javascript']
+author: 'Priccc'
+createdAt: '2023-12-27'
+updatedAt: ''
+---
+
 ## 如何判断一个链表是否有环？
 
 链表有环和没有环区别？
