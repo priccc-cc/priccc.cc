@@ -23,3 +23,21 @@ body {
   fill: currentColor;
   overflow: hidden;
 }
+
+$clampNums: ( 1: 1, 2: 2, 3: 3, 4: 4, );
+
+@each $name, $line in $clampNums {
+  /* 多行超出省略 */
+  .text-clamp-#{$name} {
+    display: -webkit-box;
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $line;
+    line-height: 1.5;
+    white-space: normal;
+    /* autoprefixer: off */ 
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+  }
+}

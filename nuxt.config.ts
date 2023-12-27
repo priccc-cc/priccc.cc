@@ -18,13 +18,26 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: '//at.alicdn.com/t/c/font_4379482_3y4w4a5pr9k.css',
+          href: '//at.alicdn.com/t/c/font_4379482_jbqqdenea0q.css',
         },
       ],
-      script: [{ src: '//at.alicdn.com/t/c/font_4379482_3y4w4a5pr9k.js' }],
+      script: [{ src: '//at.alicdn.com/t/c/font_4379482_jbqqdenea0q.js' }],
     },
   },
   content: {
+    experimental: {
+      search: {
+        indexed: true,
+        options: {
+          fields: ['title', 'content'],
+          storeFields: ['title', 'content'],
+          searchOptions: {
+            fuzzy: 0.2,
+            prefix: true,
+          },
+        },
+      },
+    },
     markdown: {
       remarkPlugins: ['remark-gfm'],
       rehypePlugins: ['rehype-figure'],
