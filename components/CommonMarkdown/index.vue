@@ -1,15 +1,18 @@
 <template>
   <div class="common-markdown-component">
     <div v-if="currentPage" class="markdown-content">
-      <ContentDoc>
+      <!-- <ContentDoc>
         <template #not-found>
           <el-empty description="文章逃跑了~" />
         </template>
-      </ContentDoc>
-      <!-- <ContentRenderer :value="currentPage">
-        <ProseH1 id="currentPage.title">{{ currentPage.title }}</ProseH1>
+      </ContentDoc> -->
+      <ContentRenderer :value="currentPage">
+        <!-- <ProseH1 id="current.page.heading.title">
+          {{ currentPage.title }}
+        </ProseH1> -->
+        <TheTitle :data="currentPage"></TheTitle>
         <ContentRendererMarkdown :value="currentPage" />
-      </ContentRenderer> -->
+      </ContentRenderer>
 
       <!-- 上下markdown -->
       <div class="markdown-prev_next-content">
@@ -67,7 +70,11 @@ const next = computed(() =>
     : contents.value![currentIndex.value + 1],
 )
 
-// watch(currentPage, () => console.log(currentPage.value))
+watch(currentPage, () => {
+  if (currentPage.value) {
+    useContentHead(currentPage.value)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
