@@ -67,21 +67,24 @@
 <script setup lang="ts">
 const route = useRoute()
 const router = useRouter()
-const type = route.params.contentType as string
-const category = route.params.category as string
 const defaultActive = ref('')
 const { data: navigation } = await useAsyncData('navigation', () =>
   fetchContentNavigation(),
 )
 
-// This is markdown route.
-if (type) {
-  defaultActive.value = category ? `/${type}/${category}` : `/${type}`
-}
-// Is not markdown route.
-else {
-  defaultActive.value = route.name as string
-}
+watchEffect(() => {
+  const type = route.params.contentType as string
+  const category = route.params.category as string
+
+  // This is markdown route.
+  if (type) {
+    defaultActive.value = category ? `/${type}/${category}` : `/${type}`
+  }
+  // Is not markdown route.
+  else {
+    defaultActive.value = route.name as string
+  }
+})
 
 function onMeunSelected(key: string, keyPath: string[]) {
   if (key === 'game') {
