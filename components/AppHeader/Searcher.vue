@@ -118,18 +118,18 @@ const handleNavtoContent = (item: any) => {
   router.push(item._page._path)
 }
 
-watch(
-  () => results.value,
-  () => {
-    console.log(results.value)
-  },
-)
-watch(
-  () => contentList.value,
-  () => {
-    console.log(contentList.value)
-  },
-)
+// watch(
+//   () => results.value,
+//   () => {
+//     console.log(results.value)
+//   },
+// )
+// watch(
+//   () => contentList.value,
+//   () => {
+//     console.log(contentList.value)
+//   },
+// )
 
 onMounted(() => {
   const os = platformOs()
