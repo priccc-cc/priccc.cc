@@ -66,8 +66,6 @@ const firstNavigation = computed(() => {
   return categoryOrContent
 })
 
-watch(navigation, () => console.log(navigation.value))
-
 // Start action handler
 function handleGetStart() {
   router.push(firstNavigation.value!._path)

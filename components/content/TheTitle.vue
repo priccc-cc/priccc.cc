@@ -1,12 +1,14 @@
 <template>
   <div class="the-title-component">
-    <ProseH1 id="current.page.heading.title">
+    <h1 class="title-content">
       {{ data.title }}
-    </ProseH1>
+    </h1>
     <div class="markdown-additional">
+      <!-- Description -->
       <div v-if="data.description" class="description-content">
         {{ data.description }}
       </div>
+      <!-- Tags -->
       <div v-if="isArray(data.tag) && data.tag.length" class="tags-content">
         <ElSpace wrap>
           <ElTag v-for="tag in data.tag" type="info">
@@ -14,6 +16,7 @@
           </ElTag>
         </ElSpace>
       </div>
+      <!-- The creater and datetime for markdown -->
       <div class="creater-content">
         <div v-if="data.author" class="author-content">
           <ElTag>作者: @{{ data.author }}</ElTag>
@@ -49,9 +52,11 @@ const { data } = toRefs(props)
 .the-title-component {
   margin: 0 0 4em 0;
 
-  .prose-h1 {
+  .title-content {
     margin: 0;
     margin-bottom: 0.6em;
+    font-size: 36px;
+    font-weight: bold;
   }
 
   .markdown-additional {
@@ -61,10 +66,6 @@ const { data } = toRefs(props)
 
     .description-content {
       color: var(--el-text-color-regular);
-    }
-
-    .datetime-content {
-      font-size: 14px;
     }
 
     .creater-content {
@@ -85,6 +86,7 @@ const { data } = toRefs(props)
           display: flex;
           align-items: center;
           gap: 4px;
+          font-size: 14px;
         }
       }
     }
