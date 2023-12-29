@@ -36,8 +36,6 @@ $clampNums: ( 1: 1, 2: 2, 3: 3, 4: 4, );
     -webkit-line-clamp: $line;
     line-height: 1.5;
     white-space: normal;
-    /* autoprefixer: off */ 
     -webkit-box-orient: vertical;
-    /* autoprefixer: on */
   }
 }

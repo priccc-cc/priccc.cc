@@ -18,10 +18,10 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: '//at.alicdn.com/t/c/font_4379482_jbqqdenea0q.css',
+          href: '//at.alicdn.com/t/c/font_4379482_36dhb1w7spm.css',
         },
       ],
-      script: [{ src: '//at.alicdn.com/t/c/font_4379482_jbqqdenea0q.js' }],
+      script: [{ src: '//at.alicdn.com/t/c/font_4379482_36dhb1w7spm.js' }],
     },
   },
   content: {
