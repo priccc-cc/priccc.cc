@@ -3,11 +3,11 @@
     <div class="filiing-block">
       <el-space>
         <el-link class="icp" href="https://beian.miit.gov.cn/" target="_blank">
-          <span>icp 备案号</span>
+          <span>京ICP备2024041203号</span>
         </el-link>
-        <el-link class="psf" href="https://beian.miit.gov.cn/" target="_blank">
+        <!-- <el-link class="psf" href="https://beian.miit.gov.cn/" target="_blank">
           <span>icp 公安备案</span>
-        </el-link>
+        </el-link> -->
       </el-space>
     </div>
   </div>
@@ -23,8 +23,6 @@
   padding: 40px 0 10px 0;
 
   .filiing-block {
-    a {
-    }
   }
 }
 </style>
