@@ -14,6 +14,7 @@
 <style lang="scss" scoped>
 .layout-home {
   .root-main {
+    min-height: 100vh;
     padding: 0;
   }
 
