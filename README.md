@@ -1,23 +1,16 @@
-# Nuxt 3 Minimal Starter
+# Technology Blog
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Blog website: [priccc.cc](priccc.cc)
+
+> Nodejs version >= 18.14.0
 
 ## Setup
 
 Make sure to install the dependencies:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
 # yarn
 yarn install
-
-# bun
-bun install
 ```
 
 ## Development Server
@@ -25,17 +18,8 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
 # yarn
 yarn dev
-
-# bun
-bun run dev
 ```
 
 ## Production
@@ -43,33 +27,32 @@ bun run dev
 Build the application for production:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
 # yarn
 yarn build
-
-# bun
-bun run build
 ```
 
 Locally preview production build:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
 # yarn
 yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Or after `yarn build`:
+
+```bash
+node .output/server/index.mjs
+```
+
+## How to add your blog(.markdown)?
+
+The blog dir is `content/*`.
+ * `conten/*` is menu tab.
+ * `content/*/*` is sub menu tab or articles.
+
+You can add numeric prefix to dir name or file name. Likly `0.xxx.md` or `0.xxx`. These prefixes can control the order in which articles are displayed.
+
+And the `_dir.yml` file is  used to configure directory attributes. Example displayed title、displayed icon or it has a sub dir.
+
+
+
