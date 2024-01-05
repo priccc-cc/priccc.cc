@@ -32,7 +32,7 @@
       <ElLink
         class="github-content"
         :underline="false"
-        href="https://github.com/Priccc/advance-myself"
+        href="https://github.com/priccc-cc/priccc.cc"
         target="_blank"
       >
         <i class="iconfont icon-github"></i>
