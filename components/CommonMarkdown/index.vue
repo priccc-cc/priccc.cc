@@ -36,6 +36,8 @@
 </template>
 
 <script setup lang="ts">
+import mediumZoom from 'medium-zoom'
+
 export interface Props {}
 
 const route = useRoute()
@@ -72,6 +74,17 @@ watch(currentPage, () => {
   if (currentPage.value) {
     useContentHead(currentPage.value)
   }
+})
+
+onMounted(async () => {
+  await nextTick()
+
+  setTimeout(() => {
+    mediumZoom(document.querySelectorAll('.prose-img'), {
+      margin: 60,
+      background: 'rgba(0, 0, 0, 0.8)',
+    })
+  }, 500)
 })
 </script>
 
