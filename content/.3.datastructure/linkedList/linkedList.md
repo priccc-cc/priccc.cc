@@ -5,6 +5,7 @@ tag: ['Javascript']
 author: 'Priccc'
 createdAt: '2023-12-27'
 updatedAt: ''
+draft: true
 ---
 
 ## 什么是链表？

@@ -50,8 +50,8 @@
       </el-menu-item>
     </template>
 
-    <!-- Games single menu item -->
-    <el-menu-item index="game" key="/game">
+    <!-- TODO: Games single menu item -->
+    <!-- <el-menu-item index="game" key="/game">
       <template #title>
         <el-icon>
           <svg class="icon" aria-hidden="true">
@@ -60,7 +60,7 @@
         </el-icon>
         <span>小游戏</span>
       </template>
-    </el-menu-item>
+    </el-menu-item> -->
   </el-menu>
 </template>
 

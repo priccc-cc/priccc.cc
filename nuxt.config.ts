@@ -18,10 +18,16 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: '//at.alicdn.com/t/c/font_4379482_36dhb1w7spm.css',
+          href: '//at.alicdn.com/t/c/font_4379482_uaq7ltbqzn.css',
         },
       ],
-      script: [{ src: '//at.alicdn.com/t/c/font_4379482_36dhb1w7spm.js' }],
+      script: [
+        { src: '//at.alicdn.com/t/c/font_4379482_uaq7ltbqzn.js' },
+        {
+          type: 'text/javascript',
+          src: '//cdnjs.cloudflare.com/ajax/libs/css-doodle/0.38.0/css-doodle.min.js',
+        },
+      ],
     },
   },
   content: {

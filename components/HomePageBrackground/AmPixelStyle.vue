@@ -17,12 +17,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-useScriptTag(
-  'https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.37.4/css-doodle.min.js',
-)
-</script>
-
 <style lang="scss" scoped>
 .page-background-component {
   width: 100%;

@@ -1,9 +1,42 @@
 <template>
   <div class="home-page-container">
-    <div class="home-animation-background">
-      <component :is="Backgrounder"></component>
-    </div>
+    <ClientOnly>
+      <div class="home-animation-background">
+        <component :is="currentAnimation"></component>
+      </div>
+    </ClientOnly>
     <div class="home-content">
+      <ClientOnly>
+        <div class="background-animation-action">
+          <el-popover
+            :width="240"
+            effect="dark"
+            placement="bottom"
+            popper-class="background-animation-popover"
+          >
+            <template #reference>
+              <el-button circle>
+                <i class="iconfont icon-skin-f"></i>
+              </el-button>
+            </template>
+            <div class="background-animation-list">
+              <div
+                v-for="(item, index) in animations"
+                :key="index"
+                :class="[
+                  'background-animation-item',
+                  { 'actived-item': currentIndex === index },
+                ]"
+                @click="handleChangeBackground(item, index)"
+              >
+                <span class="option-label">{{ item.label }}</span>
+                <span class="option-description">{{ item.description }}</span>
+              </div>
+            </div>
+          </el-popover>
+        </div>
+      </ClientOnly>
+
       <div class="nameplate-content">
         <div class="char-item">知</div>
         <div class="char-item">无</div>
@@ -35,16 +68,20 @@
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
-import { useTitle } from '@vueuse/core'
-import type { Component } from 'vue'
+import { useTitle, useStorage } from '@vueuse/core'
+
+import config from '@/components/HomePageBrackground/index'
 
 definePageMeta({ layout: 'home' })
 
-const BrackgroundAnim1 = resolveComponent('HomePageBrackgroundAnim1')
-const BrackgroundAnim2 = resolveComponent('HomePageBrackgroundAnim2')
+type BackgroundAnimation = (typeof animations)[number]
 
 const router = useRouter()
-const Backgrounder = shallowRef<Component | null>()
+const animations = config // 背景动画列表
+const currentIndex = useStorage('dynmica-background', 0)
+const currentAnimation = computed(
+  () => animations[currentIndex.value].component,
+)
 const tl = gsap.timeline({}) // Registe GSAP
 const { data: navigation } = await useAsyncData('navigation', () =>
   fetchContentNavigation(),
@@ -83,15 +120,45 @@ function handleStartAnimation() {
     opacity: 1,
   })
 }
+// Change background animation
+function handleChangeBackground(item: BackgroundAnimation, index: number) {
+  currentIndex.value = index
+}
 
 useTitle('知无涯')
 
 onMounted(() => {
-  Backgrounder.value = BrackgroundAnim2 as Component
   handleStartAnimation()
 })
 </script>
 
+<style lang="scss">
+.background-animation-popover {
+  .background-animation-list {
+    .background-animation-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        color: #409eff;
+        background-color: #18222c;
+      }
+
+      &.actived-item {
+        color: #409eff;
+      }
+
+      .option-description {
+        font-size: 12px;
+        color: #a8a8a8;
+      }
+    }
+  }
+}
+</style>
 <style lang="scss" scoped>
 .home-page-container {
   position: relative;
@@ -119,7 +186,13 @@ onMounted(() => {
     height: 100%;
     width: 100%;
     // backdrop-filter: blur(1px);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
+
+    .background-animation-action {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+    }
 
     .nameplate-content {
       position: relative;
@@ -147,6 +220,8 @@ onMounted(() => {
     }
 
     .start-action {
+      display: flex;
+      align-items: center;
       margin-top: 80px;
       opacity: 0;
     }

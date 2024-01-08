@@ -1,7 +1,8 @@
 <template>
   <div class="page-background-component">
-    <css-doodle grid="20">
+    <css-doodle>
       :doodle {
+        @grid: 16;
         @size: 100vw 100vmin;
         perspective: 10px;
       }
@@ -27,12 +28,6 @@
   </css-doodle>
   </div>
 </template>
-
-<script setup lang="ts">
-useScriptTag(
-  'https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.37.4/css-doodle.min.js',
-)
-</script>
 
 <style lang="scss" scoped>
 .page-background-component {
