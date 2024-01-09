@@ -1,27 +1,17 @@
 <template>
   <div v-if="toc && toc.links && ids.length > 1" class="app-toc-container">
-    <div v-for="link in toc.links" class="anchor-item item-level-1">
+    <div v-for="link in links" :key="link.id" class="anchor-item">
       <NuxtLink
-        :class="['anchor-link', { 'actived-anchor': link.id === activeId }]"
+        :class="[
+          'anchor-link',
+          `anchor-depth-${link.depth - 1}`,
+          { 'actived-anchor': link.id === activeId },
+        ]"
         :to="`#${link.id}`"
         @click="setActive(link.id)"
       >
         {{ link.text }}
       </NuxtLink>
-
-      <div
-        v-if="link.children"
-        v-for="sub in link.children"
-        class="anchor-item item-level-2"
-      >
-        <NuxtLink
-          :class="['anchor-link', { 'actived-anchor': sub.id === activeId }]"
-          :to="`#${sub.id}`"
-          @click="setActive(sub.id)"
-        >
-          {{ sub.text }}
-        </NuxtLink>
-      </div>
     </div>
   </div>
 </template>
@@ -37,6 +27,11 @@ const { data, refresh } = await useAsyncData(() =>
     .findOne(),
 )
 const toc = computed(() => data.value?.body?.toc)
+const links = computed(() =>
+  (toc.value ? toc.value.links : []).flatMap(item =>
+    [item].concat(item.children || []),
+  ),
+)
 const ids = computed(() => {
   const links = toc.value ? toc.value.links : []
 
@@ -51,6 +46,8 @@ const scrollOption = {
 }
 const { setActive, activeId } = useActiveScroll(ids, scrollOption)
 
+console.log(links)
+
 watch(
   () => route.path,
   () => refresh(),
@@ -61,6 +58,7 @@ watch(
 .app-toc-container {
   .anchor-item {
     .anchor-link {
+      position: relative;
       display: block;
       width: 100%;
       padding: 4px 0;
@@ -69,23 +67,27 @@ watch(
       text-overflow: ellipsis;
       white-space: nowrap;
       font-size: 12px;
+      font-weight: bold;
       cursor: pointer;
+
+      &.anchor-depth-2 {
+        padding-left: 24px;
+        font-weight: normal;
+      }
 
       &:hover,
       &.actived-anchor {
         color: var(--el-menu-hover-text-color);
       }
-    }
 
-    &.item-level-1 {
-      > .anchor-link {
-        font-weight: bold;
-      }
-    }
-
-    &.item-level-2 {
-      > .anchor-link {
-        padding-left: 24px;
+      &.actived-anchor::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 4px;
+        bottom: 4px;
+        width: 2px;
+        background-color: var(--el-color-primary);
       }
     }
   }
