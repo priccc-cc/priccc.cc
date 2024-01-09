@@ -1,5 +1,8 @@
 <template>
   <div v-if="categoryPath" :key="categoryPath" class="app-aside-container">
+    <div v-if="$route.params.category" class="category-title">
+      {{ handleToUpperCaseFirstChar($route.params.category as string) }}
+    </div>
     <ContentList :path="categoryPath" :query="contentQuery" v-slot="{ list }">
       <div>
         <div
@@ -40,10 +43,21 @@ watch(
 function handleContentSlelcted(doc: ParsedContent) {
   router.push(doc._path!)
 }
+
+// To first char toUpperCase
+function handleToUpperCaseFirstChar(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
 </script>
 
 <style lang="scss" scoped>
 .app-aside-container {
+  .category-title {
+    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
   .nav-item {
     display: flex;
     align-items: center;
